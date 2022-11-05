@@ -7,11 +7,47 @@
     <title>Comentarios</title>
 </head>
 <body>
-    <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v15.0" nonce="J0BYMv0H"></script>
-    <h1>Pagina de prueba</h1>
-    <h2>Comentarios de Facebook</h2>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus repudiandae repellat rerum error dolore illum sunt laboriosam, in cum id possimus dolor optio nam, dolorem nisi aspernatur laudantium ipsa facilis!</p>
-    <div class="fb-share-button" data-href="https://s6zel3kc3yxoz1azwlgfkw.on.drv.tw/pagina_prueba/PruebaFace.html" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fs6zel3kc3yxoz1azwlgfkw.on.drv.tw%2Fpagina_prueba%2FPruebaFace.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : 'your-app-id',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v15.0'
+          });
+        };
+      </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '609223244282209',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v15.0'
+          });
+            
+          FB.AppEvents.logPageView();   
+            
+        };
+      
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+        function onLogin(){
+            FB.login((response) => {
+                if (response.authResponse){
+                    FB.api('/me?fields=email,name,picture', (response) => {
+                        console.log(response)
+                    })
+                }
+            })
+        }
+      </script>
+    <button onclick="onLogin();">Iniciar Sesion con Facebook</button>
 </body>
 </html>
